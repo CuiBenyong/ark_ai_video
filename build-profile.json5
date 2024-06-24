@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "/Users/xuanyi/.ohos/config/auto_debug_AIVideo_com.xuanyi.aivideo_220086000132715343.cer",
+          "certpath": "./keystores/auto_debug_AIVideo_com.xuanyi.aivideo_220086000132715343.cer",
           "storePassword": "0000001AB1DF54EB0EAA908369298B153ECF894E28ADAF9104A679BFF70385A30A082A6330A0D9B15A7C",
           "keyAlias": "debugKey",
           "keyPassword": "0000001A1FAD61FFE0A07535A2B4326CE4C3540143253A6C295124BAFF0A6F68A61576A2313A8B29857F",
-          "profile": "/Users/xuanyi/.ohos/config/auto_debug_AIVideo_com.xuanyi.aivideo_220086000132715343.p7b",
+          "profile": "./keystores/auto_debug_AIVideo_com.xuanyi.aivideo_220086000132715343.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "/Users/xuanyi/.ohos/config/auto_debug_AIVideo_com.xuanyi.aivideo_220086000132715343.p12"
+          "storeFile": "./keystores/auto_debug_AIVideo_com.xuanyi.aivideo_220086000132715343.p12"
         }
       }
     ],

@@ -51,6 +51,7 @@ struct BusinessCardPage {
       })
     }
     .backgroundColor($r('app.color.common_background'))
+    .height('100%')
   }
 
   @Builder CardTab(item: TabItemData) {
