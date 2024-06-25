@@ -1,4 +1,5 @@
 import hilog from '@ohos.hilog';
+import { SubtitlePosition, VideoAspect, VideoConcatMode, VideoData } from '../common/bean/VideoData';
 import { CommonConstants } from '../common/constants/CommonConstants';
 
 const voiceList = CommonConstants.VOICE_LIST.map(item => {
@@ -12,6 +13,8 @@ hilog.info(0x0000, 'testTag', JSON.stringify(voiceList));
  */
 @Component
 export struct VideoFormComponent {
+  private videoItem: VideoData = new VideoData();
+
   build() {
     Scroll() {
       Column({ space: 5 }) {
@@ -21,6 +24,9 @@ export struct VideoFormComponent {
             .type(InputType.Normal)
             .backgroundColor('#ff0')
             .flexShrink(1)
+            .onChange(value => {
+              this.videoItem.video_subject = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -33,6 +39,9 @@ export struct VideoFormComponent {
             .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
             .height('150')
             .margin({ top: 8 })
+            .onChange(value => {
+              this.videoItem.video_script = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('200')
@@ -45,6 +54,9 @@ export struct VideoFormComponent {
             .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
             .height('100')
             .margin({ top: 8 })
+            .onChange(value => {
+              this.videoItem.video_terms = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('150')
@@ -58,6 +70,9 @@ export struct VideoFormComponent {
             .value('随机拼接')
             .flexShrink(1)
             .width('300')
+            .onSelect((index, value: VideoConcatMode) => {
+              this.videoItem.video_concat_mode = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -71,6 +86,9 @@ export struct VideoFormComponent {
             .value('坚屏9:16')
             .flexShrink(1)
             .width('300')
+            .onSelect((index, value: VideoAspect) => {
+              this.videoItem.video_aspect = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -84,6 +102,9 @@ export struct VideoFormComponent {
             .value('3')
             .flexShrink(1)
             .width('300')
+            .onSelect((index, value: String) => {
+              this.videoItem.video_clip_duration = Number(value);
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -98,6 +119,9 @@ export struct VideoFormComponent {
             .flexShrink(1)
             .width('300')
             .padding({ left: 16, right: 26 })
+            .onSelect((index, value) => {
+              this.videoItem.voice_name = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -114,6 +138,9 @@ export struct VideoFormComponent {
             .flexShrink(1)
             .width('300')
             .padding({ left: 16, right: 26 })
+            .onSelect((index, value) => {
+              this.videoItem.voice_volume = Number(value)
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -121,13 +148,15 @@ export struct VideoFormComponent {
         .backgroundColor('#ff0')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-          Text('背景音乐').width('100')
-          Select([{ value: 'none' }, { value: 'random' }, { value: 'sequential' }])
-            .selected(1)
-            .value('random')
+          Text('背景音乐音量').width('100')
+          Slider({ min: 0, max: 1, value: 0.2, step: 0.2 })
+            .showTips(true)
             .flexShrink(1)
-            .width('300')
+            .width('300vp')
             .padding({ left: 16, right: 26 })
+            .onChange((value) =>{
+              this.videoItem.bgm_volume = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -142,6 +171,9 @@ export struct VideoFormComponent {
             .width('20')
             .height('20')
             .padding({ left: 16, right: 26 })
+            .onChange(value =>{
+              this.videoItem.subtitle_enabled = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -158,6 +190,9 @@ export struct VideoFormComponent {
             .flexShrink(1)
             .width('300vp')
             .padding({ left: 16, right: 26 })
+            .onSelect((index, value) =>{
+              this.videoItem.font_name = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -172,6 +207,10 @@ export struct VideoFormComponent {
             .flexShrink(1)
             .width('300vp')
             .padding({ left: 16, right: 26 })
+            .onSelect((index) =>{
+              const value =  ['top', 'center', 'bottom'][index] as SubtitlePosition;
+              this.videoItem.subtitle_position = value
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -180,11 +219,14 @@ export struct VideoFormComponent {
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('字幕大小').width('100')
-          Slider({min: 30, max: 100, value: 72, step: 1 })
+          Slider({ min: 30, max: 100, value: 72, step: 1 })
             .showTips(true)
             .flexShrink(1)
             .width('300vp')
             .padding({ left: 16, right: 26 })
+            .onChange(value =>{
+              this.videoItem.font_size = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -193,11 +235,14 @@ export struct VideoFormComponent {
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('描边粗细').width('100')
-          Slider({min: 0.0, max: 10.0, value: 1.5, step: 0.01 })
+          Slider({ min: 0.0, max: 10.0, value: 1.5, step: 0.01 })
             .showTips(true)
             .flexShrink(1)
             .width('300vp')
             .padding({ left: 16, right: 26 })
+            .onChange(value =>{
+              this.videoItem.stroke_width = value;
+            })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
@@ -205,7 +250,7 @@ export struct VideoFormComponent {
         .backgroundColor('#ff0')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-          Button(){
+          Button() {
             Text('生成')
               .width('100%')
               .fontSize('23')
@@ -214,13 +259,17 @@ export struct VideoFormComponent {
           }
           .type(ButtonType.Capsule)
           .width('100%')
-          .height('60')
+          .height('50')
+          .onClick(() =>{
+            hilog.info(0x0000, 'testTag', JSON.stringify(this.videoItem));
+
+            // TODO: 提交请求，跳转结果查询
+          })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
         .padding('16')
         .backgroundColor('#ff0')
-
 
       }.justifyContent(FlexAlign.Start)
 
