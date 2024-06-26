@@ -20,24 +20,25 @@ export struct VideoFormComponent {
       Column({ space: 5 }) {
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text($r('app.string.video_subject')).width('100')
-          TextInput()
+          TextInput({placeholder: '请输入视频主题'})
             .type(InputType.Normal)
-            .backgroundColor('#ff0')
             .flexShrink(1)
+            .backgroundColor('#f5f5f5')
             .onChange(value => {
               this.videoItem.video_subject = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#f00')
-
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
         Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Start }) {
-          Text('视频文案').backgroundColor('#f00')
+          Text('视频文案').backgroundColor('#fff')
           TextArea()
             .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
             .height('150')
+            .backgroundColor('#f5f5f5')
+
             .margin({ top: 8 })
             .onChange(value => {
               this.videoItem.video_script = value;
@@ -45,23 +46,24 @@ export struct VideoFormComponent {
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('200')
-        .padding('16')
-        .backgroundColor('#f0f')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Start }) {
-          Text('视频关键词').backgroundColor('#f00')
+          Text('视频关键词').backgroundColor('#fff')
           TextArea()
             .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
-            .height('100')
+            .height('80')
+            .backgroundColor('#f5f5f5')
             .margin({ top: 8 })
             .onChange(value => {
               this.videoItem.video_terms = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
-        .height('150')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .height('130')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('视频拼接模式').width('100')
@@ -69,6 +71,7 @@ export struct VideoFormComponent {
             .selected(0)
             .value('随机拼接')
             .flexShrink(1)
+            .backgroundColor('#f5f5f5')
             .width('300')
             .onSelect((index, value: VideoConcatMode) => {
               this.videoItem.video_concat_mode = value;
@@ -76,8 +79,8 @@ export struct VideoFormComponent {
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#0f0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('视频比例').width('100')
@@ -85,6 +88,7 @@ export struct VideoFormComponent {
             .selected(0)
             .value('坚屏9:16')
             .flexShrink(1)
+            .backgroundColor('#f5f5f5')
             .width('300')
             .onSelect((index, value: VideoAspect) => {
               this.videoItem.video_aspect = value;
@@ -92,8 +96,8 @@ export struct VideoFormComponent {
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#f0f')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('片段最长(s)').width('100')
@@ -101,6 +105,7 @@ export struct VideoFormComponent {
             .selected(1)
             .value('3')
             .flexShrink(1)
+            .backgroundColor('#f5f5f5')
             .width('300')
             .onSelect((index, value: String) => {
               this.videoItem.video_clip_duration = Number(value);
@@ -108,8 +113,8 @@ export struct VideoFormComponent {
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
         //
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('朗读声音').width('100')
@@ -118,6 +123,7 @@ export struct VideoFormComponent {
             .value(voiceList[0].value)
             .flexShrink(1)
             .width('300')
+            .backgroundColor('#f5f5f5')
             .padding({ left: 16, right: 26 })
             .onSelect((index, value) => {
               this.videoItem.voice_name = value;
@@ -125,8 +131,8 @@ export struct VideoFormComponent {
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('朗读音量').width('100')
@@ -137,6 +143,8 @@ export struct VideoFormComponent {
             .value('1.0')
             .flexShrink(1)
             .width('300')
+            .backgroundColor('#f5f5f5')
+
             .padding({ left: 16, right: 26 })
             .onSelect((index, value) => {
               this.videoItem.voice_volume = Number(value)
@@ -144,8 +152,8 @@ export struct VideoFormComponent {
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('背景音乐音量').width('100')
@@ -154,14 +162,14 @@ export struct VideoFormComponent {
             .flexShrink(1)
             .width('300vp')
             .padding({ left: 16, right: 26 })
-            .onChange((value) =>{
+            .onChange((value) => {
               this.videoItem.bgm_volume = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('启用字幕').width('100')
@@ -171,14 +179,14 @@ export struct VideoFormComponent {
             .width('20')
             .height('20')
             .padding({ left: 16, right: 26 })
-            .onChange(value =>{
+            .onChange(value => {
               this.videoItem.subtitle_enabled = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('字幕字体').width('100')
@@ -188,34 +196,36 @@ export struct VideoFormComponent {
             .selected(1)
             .value('MicrosoftYaHeiNormal.ttc')
             .flexShrink(1)
+            .backgroundColor('#f5f5f5')
             .width('300vp')
             .padding({ left: 16, right: 26 })
-            .onSelect((index, value) =>{
+            .onSelect((index, value) => {
               this.videoItem.font_name = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('字幕位置').width('100')
           Select([{ value: '顶部' }, { value: '中间' }, { value: '底部（推荐）' }])
             .selected(2)
             .value('底部（推荐）')
+            .backgroundColor('#f5f5f5')
             .flexShrink(1)
             .width('300vp')
             .padding({ left: 16, right: 26 })
-            .onSelect((index) =>{
-              const value =  ['top', 'center', 'bottom'][index] as SubtitlePosition;
+            .onSelect((index) => {
+              const value = ['top', 'center', 'bottom'][index] as SubtitlePosition;
               this.videoItem.subtitle_position = value
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('字幕大小').width('100')
@@ -224,14 +234,14 @@ export struct VideoFormComponent {
             .flexShrink(1)
             .width('300vp')
             .padding({ left: 16, right: 26 })
-            .onChange(value =>{
+            .onChange(value => {
               this.videoItem.font_size = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Text('描边粗细').width('100')
@@ -240,14 +250,14 @@ export struct VideoFormComponent {
             .flexShrink(1)
             .width('300vp')
             .padding({ left: 16, right: 26 })
-            .onChange(value =>{
+            .onChange(value => {
               this.videoItem.stroke_width = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
           Button() {
@@ -260,7 +270,7 @@ export struct VideoFormComponent {
           .type(ButtonType.Capsule)
           .width('100%')
           .height('50')
-          .onClick(() =>{
+          .onClick(() => {
             hilog.info(0x0000, 'testTag', JSON.stringify(this.videoItem));
 
             // TODO: 提交请求，跳转结果查询
@@ -268,8 +278,8 @@ export struct VideoFormComponent {
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
         .height('60')
-        .padding('16')
-        .backgroundColor('#ff0')
+        .padding({left: 16, right: 16,top: 8, bottom: 8})
+        .backgroundColor('#fff')
 
       }.justifyContent(FlexAlign.Start)
 
