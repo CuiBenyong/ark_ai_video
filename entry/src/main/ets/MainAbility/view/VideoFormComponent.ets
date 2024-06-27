@@ -1,6 +1,7 @@
 import hilog from '@ohos.hilog';
 import { SubtitlePosition, VideoAspect, VideoConcatMode, VideoData } from '../common/bean/VideoData';
 import { CommonConstants } from '../common/constants/CommonConstants';
+import VideoFormViewModel from '../viewmodel/VideoFormViewModel';
 
 const voiceList = CommonConstants.VOICE_LIST.map(item => {
   return { value: `${item.name}-${item.gender}`, icon: null }
@@ -13,8 +14,6 @@ hilog.info(0x0000, 'testTag', JSON.stringify(voiceList));
  */
 @Component
 export struct VideoFormComponent {
-  private videoItem: VideoData = new VideoData();
-
   build() {
     Scroll() {
       Column({ space: 5 }) {
@@ -25,7 +24,7 @@ export struct VideoFormComponent {
             .flexShrink(1)
             .backgroundColor('#f5f5f5')
             .onChange(value => {
-              this.videoItem.video_subject = value;
+              VideoFormViewModel.videoItem.video_subject = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -41,7 +40,7 @@ export struct VideoFormComponent {
 
             .margin({ top: 8 })
             .onChange(value => {
-              this.videoItem.video_script = value;
+              VideoFormViewModel.videoItem.video_script = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -57,7 +56,7 @@ export struct VideoFormComponent {
             .backgroundColor('#f5f5f5')
             .margin({ top: 8 })
             .onChange(value => {
-              this.videoItem.video_terms = value;
+              VideoFormViewModel.videoItem.video_terms = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -74,7 +73,7 @@ export struct VideoFormComponent {
             .backgroundColor('#f5f5f5')
             .width('300')
             .onSelect((index, value: VideoConcatMode) => {
-              this.videoItem.video_concat_mode = value;
+              VideoFormViewModel.videoItem.video_concat_mode = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -91,7 +90,7 @@ export struct VideoFormComponent {
             .backgroundColor('#f5f5f5')
             .width('300')
             .onSelect((index, value: VideoAspect) => {
-              this.videoItem.video_aspect = value;
+              VideoFormViewModel.videoItem.video_aspect = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -108,7 +107,7 @@ export struct VideoFormComponent {
             .backgroundColor('#f5f5f5')
             .width('300')
             .onSelect((index, value: String) => {
-              this.videoItem.video_clip_duration = Number(value);
+              VideoFormViewModel.videoItem.video_clip_duration = Number(value);
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -126,7 +125,7 @@ export struct VideoFormComponent {
             .backgroundColor('#f5f5f5')
             .padding({ left: 16, right: 26 })
             .onSelect((index, value) => {
-              this.videoItem.voice_name = value;
+              VideoFormViewModel.videoItem.voice_name = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -147,7 +146,7 @@ export struct VideoFormComponent {
 
             .padding({ left: 16, right: 26 })
             .onSelect((index, value) => {
-              this.videoItem.voice_volume = Number(value)
+              VideoFormViewModel.videoItem.voice_volume = Number(value)
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -163,7 +162,7 @@ export struct VideoFormComponent {
             .width('300vp')
             .padding({ left: 16, right: 26 })
             .onChange((value) => {
-              this.videoItem.bgm_volume = value;
+              VideoFormViewModel.videoItem.bgm_volume = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -180,7 +179,7 @@ export struct VideoFormComponent {
             .height('20')
             .padding({ left: 16, right: 26 })
             .onChange(value => {
-              this.videoItem.subtitle_enabled = value;
+              VideoFormViewModel.videoItem.subtitle_enabled = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -200,7 +199,7 @@ export struct VideoFormComponent {
             .width('300vp')
             .padding({ left: 16, right: 26 })
             .onSelect((index, value) => {
-              this.videoItem.font_name = value;
+              VideoFormViewModel.videoItem.font_name = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -219,7 +218,7 @@ export struct VideoFormComponent {
             .padding({ left: 16, right: 26 })
             .onSelect((index) => {
               const value = ['top', 'center', 'bottom'][index] as SubtitlePosition;
-              this.videoItem.subtitle_position = value
+              VideoFormViewModel.videoItem.subtitle_position = value
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -235,7 +234,7 @@ export struct VideoFormComponent {
             .width('300vp')
             .padding({ left: 16, right: 26 })
             .onChange(value => {
-              this.videoItem.font_size = value;
+              VideoFormViewModel.videoItem.font_size = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -251,7 +250,7 @@ export struct VideoFormComponent {
             .width('300vp')
             .padding({ left: 16, right: 26 })
             .onChange(value => {
-              this.videoItem.stroke_width = value;
+              VideoFormViewModel.videoItem.stroke_width = value;
             })
         }
         .width(CommonConstants.DETAIL_PAGE_WIDTH_PERCENT)
@@ -271,8 +270,7 @@ export struct VideoFormComponent {
           .width('100%')
           .height('50')
           .onClick(() => {
-            hilog.info(0x0000, 'testTag', JSON.stringify(this.videoItem));
-
+            VideoFormViewModel.submit()
             // TODO: 提交请求，跳转结果查询
           })
         }

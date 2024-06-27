@@ -18,6 +18,7 @@ struct BusinessCardPage {
   @State breakPoint: string = CommonConstants.BREAK_POINT_XS;
 
   build() {
+
     Column() {
       Tabs({
         index: this.currentIndex,
